@@ -1,12 +1,14 @@
 import React from 'react';
-import HomePage from '../../pages/HomeTab/HomeTab';
-import { ProfilePage } from '../../pages/ProfileTab/ProfilePage';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import BottomTabs from '../../widgets/BottomTabs/BottomTabs';
-import HomeHeader from '../../widgets/HomeHeader/HomeHeader';
-import SearchTab from '../../pages/SearchTab/SearchTab';
-import AddTab from '../../pages/AddTab/AddTab';
-import ReelsTab from '../../pages/ReelsTab/ReelsTab';
+
+import BottomTabs from './BottomBar/BottomBar';
+import HomeHeader from '@/widgets/headers/HomeHeader/HomeHeader';
+import HomePage from '@/screens/FeedScreen/Home';
+import SearchTab from '@/screens/SearchScreen/Search';
+import AddTab from '@/screens/AddTabScreen/AddTab';
+import ReelsTab from '@/screens/ReelsScreen/Reels';
+import ProfilePage from '@/screens/ProfileScreen/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +17,6 @@ const AppTabs = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        
       }}
       tabBar={props => <BottomTabs {...props} />}
     >
@@ -25,7 +26,6 @@ const AppTabs = () => {
         options={{
           headerShown: true,
           header: () => <HomeHeader />,
-          
         }}
       />
       <Tab.Screen
@@ -53,7 +53,14 @@ const AppTabs = () => {
         }}
       />
 
-      <Tab.Screen name="Profile" component={ProfilePage} />
+      <Tab.Screen
+        name="Profile"
+        component={ProfilePage}
+        options={{
+          headerShown: true,
+          header: () => <HomeHeader />,
+        }}
+      />
     </Tab.Navigator>
   );
 };

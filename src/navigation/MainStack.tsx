@@ -11,7 +11,7 @@ const MainStack = () => {
       <Stack.Screen
         name="Tabs"
         component={AppTabs}
-        options={{ headerShown: false }} // хедер для табов делаем в AppTabs через Stack
+        options={{ headerShown: false }} 
       />
       {/* <Stack.Screen
         name="ModalScreen"

@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Pressable } from 'react-native';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-import { style } from './BottomTabs.styles';
-import { getTabIcon } from '../navigation/lib/getTabIcon';
+import { style } from './BottomBar.styles';
+import { getTabIcon } from '@/widgets/navigation/lib/getTabIcon';
 
 const BottomTabs = ({ state, navigation, insets }: BottomTabBarProps) => {
   const ava =

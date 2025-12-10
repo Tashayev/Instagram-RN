@@ -1,10 +1,10 @@
-import React from 'react';
 import { View, Text } from 'react-native';
 
-export const ProfilePage = () => {
+ const ProfilePage = () => {
   return (
     <View>
       <Text>ProfilePage</Text>
     </View>
   );
 };
+export default ProfilePage

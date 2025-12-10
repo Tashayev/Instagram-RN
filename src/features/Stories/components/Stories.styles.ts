@@ -15,12 +15,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 2,
     marginVertical: 2,
   },
-  image: {
-    width: 81,
-    height: 81,
-    borderRadius: 50,
-    cursor: 'pointer',
-  },
+  
   name: {
     marginTop: 4,
     fontSize: 12,
