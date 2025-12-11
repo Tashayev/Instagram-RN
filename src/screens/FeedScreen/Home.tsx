@@ -1,13 +1,12 @@
 import { ScrollView } from 'react-native';
-import { userData } from '../../../data';
-import { size } from '../../../data';
-
 import Stories from '@/features/Stories/Stories';
+import Posts from '@/features/Posts/Posts';
 
 const HomePage = () => {
   return (
     <ScrollView>
-      <Stories stories={userData} size={size} />
+      <Stories  />
+      <Posts/>
     </ScrollView>
   );
 };

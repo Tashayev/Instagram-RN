@@ -1,6 +1,6 @@
 export type AvaIconTypes = {
-  avatar: string;
+  avatar: string | undefined;
   size: number;
   viewed: boolean;
-  onPress: () => void;
+  //onPress: () => void;
 };
