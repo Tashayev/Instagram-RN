@@ -30,3 +30,20 @@ type Media = {
   type: string;
   url: string;
 };
+
+export type PostLikesTypes = {
+  id: number;
+  postId: number;
+  userId: number | undefined;
+  createdAt: number;
+};
+
+export type PostCommentTypes = {
+  id: number;
+  postId: number;
+  userId: number;
+  text: string;
+  likes: number;
+  createdAt: string;
+  replyTo: null|number;
+};

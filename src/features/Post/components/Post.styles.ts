@@ -35,5 +35,10 @@ export const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: '100%',
   },
+  btn:{
+    flexDirection: 'row',
+    gap:5,
+    alignItems: 'center'
+  }
   
 });

@@ -1,20 +1,33 @@
 import { FlatList, Image, Pressable, Text, View } from 'react-native';
-import { type PostTypes } from './components/PostTypes';
+import { PostCommentTypes, PostLikesTypes, type PostTypes } from './components/PostTypes';
 import AvaIcon from '@/widgets/ui/AvaIcon/AvaIcon';
 import { styles } from './components/Post.styles';
-import { Bookmark, EllipsisVertical, Heart, MessageCircle, Send } from 'lucide-react-native';
+import {
+  Bookmark,
+  EllipsisVertical,
+  Heart,
+  MessageCircle,
+  Send,
+} from 'lucide-react-native';
 import Video from 'react-native-video';
 import { BookmarkSolid, HeartSolid } from '@/shared/icons/Icons';
+
+import { getPostComment, getPostLikesInfo } from '@/shared/utils/filterUtils';
 
 interface Prop {
   avatar: string | undefined;
   username: string | undefined;
   post: PostTypes;
+  userId: number | undefined;
+  postLikes: PostLikesTypes[];
+  comments: PostCommentTypes[]
 }
 const Post = (props: Prop) => {
-  const { avatar, username, post } = props;
-  const liked = true
-  const marked = true
+  const { avatar, username, post, userId, postLikes, comments } = props;
+ const currentUserId = userId ? userId : 0
+  const marked = true;
+  const { likes, likesCount, liked } = getPostLikesInfo(post.id, currentUserId, postLikes);
+  const { commentsCount, currentUserComment, postComment} = getPostComment(post.id, currentUserId, comments)
   return (
     <View>
       <View style={styles.container}>
@@ -77,12 +90,20 @@ const Post = (props: Prop) => {
         </View>
         <View style={styles.spaceBetween}>
           <View style={styles.left}>
-            <Pressable>{liked?<HeartSolid/>:<Heart />}</Pressable>
-            <Pressable><MessageCircle /></Pressable>
-            <Pressable><Send /></Pressable>
+            <Pressable style={styles.btn}>
+              {liked ? <HeartSolid /> : <Heart />}
+              <Text>{likesCount}</Text>
+            </Pressable>
+            <Pressable style={styles.btn}>
+              <MessageCircle />
+              <Text>{commentsCount}</Text>
+            </Pressable>
+            <Pressable>
+              <Send />
+            </Pressable>
           </View>
           <View>
-            <Pressable>{marked?<BookmarkSolid/> :<Bookmark />}</Pressable>
+            <Pressable>{marked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
           </View>
         </View>
       </View>

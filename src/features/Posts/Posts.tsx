@@ -1,6 +1,5 @@
 import React from 'react';
-import { users } from '../../../data';
-import { posts } from '../../../data';
+import { users, posts, postLikes, comments } from '../../../data';
 import Post from '../Post/Post';
 
 import { ScrollView, View } from 'react-native';
@@ -17,6 +16,9 @@ const Posts = () => {
             username={user?.username}
             post={post}
             key={post.id}
+            userId={user?.id}
+            postLikes={postLikes}
+            comments={comments}
           />
         );
       })}
