@@ -1,7 +1,8 @@
 import { View, Text, Image, Pressable } from 'react-native';
 import { Heart, Plus } from 'lucide-react-native';
 import { styles } from './HomeHeader.styles';
-import InstaText from '../../../shared/icons/InstaText';
+import { InstaText } from '@/shared/icons/Icons';
+
 
 
 const HomeHeader = () => {

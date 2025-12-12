@@ -2,9 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-    flex:1    
+    paddingHorizontal: 5,  
+       
   },
   item: {
     alignItems: 'center',

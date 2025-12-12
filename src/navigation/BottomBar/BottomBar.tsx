@@ -20,7 +20,7 @@ const BottomTabs = ({ state, navigation, insets }: BottomTabBarProps) => {
             onPress={() => navigation.navigate(route.name)}
             style={{ opacity: isFocused ? 1 : 0.65 }}
           >
-            {getTabIcon(route.name, ava)}
+            {getTabIcon(route.name, ava, isFocused)}
           </Pressable>
         );
       })}

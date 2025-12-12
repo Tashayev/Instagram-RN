@@ -241,7 +241,7 @@ export const posts = [
     media: [
       {
         type: "video",
-        url: "https://videos.pexels.com/video-files/3182833/3182833-uhd_2560_1440_30fps.mp4",
+        url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         thumbnail: "https://i.ytimg.com/vi/aqz-KE-bpKQ/maxresdefault.jpg",
         duration: 13,
       },
@@ -277,7 +277,7 @@ export const posts = [
     media: [
       {
         type: "image",
-        url: "https://images.unsplash.com/photo-1541717875227-5f61ffcec0c7",
+        url: "https://posterjack.ca/cdn/shop/articles/landscape_photography_tips_featured_image.jpg?v=1563408049&width=1500",
       },
     ],
     description: "Never give up 💪",
@@ -292,7 +292,7 @@ export const posts = [
     media: [
       {
         type: "image",
-        url: '',
+        url: 'https://cdn.pixabay.com/photo/2017/11/14/00/28/wormwood-some-competition-2947198_1280.jpg',
       },
     ],
     description: "Never give ",
@@ -309,7 +309,7 @@ export const posts = [
     media: [
       {
         type: "video",
-        url: "https://videos.pexels.com/video-files/2795744/2795744-hd_1280_720_25fps.mp4",
+        url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         thumbnail:
           "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e",
         duration: 11,

@@ -12,9 +12,12 @@ const Posts = () => {
       {posts.map(post => {
         const user = findUsersById(users, post.userId);
         return (
-          <View key={post.id}>
-            <Post avatar={user?.avatar} username={user?.username} post={post} />
-          </View>
+          <Post
+            avatar={user?.avatar}
+            username={user?.username}
+            post={post}
+            key={post.id}
+          />
         );
       })}
     </ScrollView>
