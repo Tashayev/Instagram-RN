@@ -1,10 +1,15 @@
-type StoryTypes = {
-  name: string;
-  id: number;
-  avatar: string;
-  viewed: boolean;
+type StoryViewedUsers = {
+  userId: number;
+  viewedAt: number;
 };
-export interface StoriesTypes {
+export type StoryTypes = {
+  id: number;
+  viewedBy: StoryViewedUsers[];
+  userId: number;
+  createdAt: number;
+  expiresAt: number;
+};
+
+export interface StoriesState {
   stories: StoryTypes[];
-  size: number;
 }

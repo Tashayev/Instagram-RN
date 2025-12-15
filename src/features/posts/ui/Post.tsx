@@ -107,9 +107,8 @@ const Post = (props: Prop) => {
             <Pressable>{marked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
           </View>
         </View>
-
         {postComment.map(c => (
-          <View style={styles.comments}>
+          <View style={styles.comments} key={c.id}>
             <Text style={styles.username2}></Text>
             <Text>{c.text}</Text>
           </View>
