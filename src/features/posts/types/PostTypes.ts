@@ -21,6 +21,9 @@ export type PostTypes = {
   createdAt: string;
   taggedUsers: number[];
 };
+export type PostState = {
+  posts: PostTypes[]
+}
 type Commet = {
   username: string;
   comment: string;
@@ -45,5 +48,17 @@ export type PostCommentTypes = {
   text: string;
   likes: number;
   createdAt: string;
-  replyTo: null|number;
+  replyTo: null | number;
+};
+
+export type LikeInfoTypes = {
+  likes: PostLikesTypes[];
+  liked: boolean;
+  likesCount: number;
+};
+
+export type CommetInfoTypes = {
+  postComment: PostCommentTypes[];
+  commentsCount: number;
+  filteredComentatorsById: PostCommentTypes[];
 };

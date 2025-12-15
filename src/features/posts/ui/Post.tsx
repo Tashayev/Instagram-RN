@@ -1,7 +1,14 @@
 import { FlatList, Image, Pressable, Text, View } from 'react-native';
-import { PostCommentTypes, PostLikesTypes, type PostTypes } from './components/PostTypes';
+import {
+  CommetInfoTypes,
+  LikeInfoTypes,
+  PostCommentTypes,
+  PostLikesTypes,
+  User,
+  type PostTypes,
+} from '../types/PostTypes';
 import AvaIcon from '@/widgets/ui/AvaIcon/AvaIcon';
-import { styles } from './components/Post.styles';
+import { styles } from './Post.styles';
 import {
   Bookmark,
   EllipsisVertical,
@@ -11,23 +18,25 @@ import {
 } from 'lucide-react-native';
 import Video from 'react-native-video';
 import { BookmarkSolid, HeartSolid } from '@/shared/icons/Icons';
-
-import { getPostComment, getPostLikesInfo } from '@/shared/utils/filterUtils';
+import { findUsersById } from '@/shared/utils/filterUtils';
 
 interface Prop {
   avatar: string | undefined;
   username: string | undefined;
   post: PostTypes;
-  userId: number | undefined;
-  postLikes: PostLikesTypes[];
-  comments: PostCommentTypes[]
+  likeInfo: LikeInfoTypes;
+  commentInfo: CommetInfoTypes;
 }
 const Post = (props: Prop) => {
-  const { avatar, username, post, userId, postLikes, comments } = props;
- const currentUserId = userId ? userId : 0
+  const { avatar, username, post, likeInfo, commentInfo } = props;
+
   const marked = true;
-  const { likes, likesCount, liked } = getPostLikesInfo(post.id, currentUserId, postLikes);
-  const { commentsCount, currentUserComment, postComment} = getPostComment(post.id, currentUserId, comments)
+  const { liked, likesCount } = likeInfo;
+  const { postComment, commentsCount, filteredComentatorsById } = commentInfo;
+  const commentator = (id:number) => {
+    const currentCommentatorId = filteredComentatorsById.find(c => c.id ===id);
+    //const currentCommentator =  findUsersById()
+  }
   return (
     <View>
       <View style={styles.container}>
@@ -72,15 +81,7 @@ const Post = (props: Prop) => {
                     />
                   )
                 ) : (
-                  <View
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      backgroundColor: '#eee',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
+                  <View style={styles.noMedia}>
                     <Text>No media</Text>
                   </View>
                 )}
@@ -106,6 +107,13 @@ const Post = (props: Prop) => {
             <Pressable>{marked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
           </View>
         </View>
+
+        {postComment.map(c => (
+          <View style={styles.comments}>
+            <Text style={styles.username2}></Text>
+            <Text>{c.text}</Text>
+          </View>
+        ))}
       </View>
     </View>
   );

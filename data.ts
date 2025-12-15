@@ -212,7 +212,7 @@ export const storyContents = [
   },
 ];
 
-export const posts = [
+export const postsData = [
   // ---------- 1. Фото-пост с каруселью ----------
   {
     id: 1001,
@@ -381,7 +381,7 @@ export const comments = [
   {
     id: 5003,
     postId: 1002,
-    userId: 4,
+    userId: 3,
     text: "Great energy!",
     likes: 0,
     createdAt: "2025-01-11T13:00:00Z",
