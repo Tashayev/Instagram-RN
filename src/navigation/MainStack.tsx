@@ -1,23 +1,30 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppTabs from './AppTabs';
-
+import HomeHeader from './headers/HomeHeader/HomeHeader';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: true }}>
+    <Stack.Navigator>
       <Stack.Screen
         name="Tabs"
         component={AppTabs}
-        options={{ headerShown: false }} 
+        options={({ route }) => ({
+          header: props => {
+            const tab = getFocusedRouteNameFromRoute(route) ?? 'Home';
+            if (tab === 'Home') {
+              return <HomeHeader {...props} />;
+            }
+            // if (tab === 'Search') {
+            //   return <SearchHeader {...props} />;
+            // }
+            return null;
+          },
+        })}
       />
-      {/* <Stack.Screen
-        name="ModalScreen"
-        
-        options={{ presentation: 'modal' }}
-      /> */}
     </Stack.Navigator>
   );
 };
