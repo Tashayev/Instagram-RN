@@ -1,6 +1,7 @@
 
 import { PayloadAction } from "@reduxjs/toolkit";
-import { StoriesState, StoryTypes } from "../components/StoriesTypes";
+import { StoriesState, StoryTypes } from "../types/StoriesTypes";
+
 
 
 export const setAllStories = (state: StoriesState, action: PayloadAction<StoryTypes[]>) => {

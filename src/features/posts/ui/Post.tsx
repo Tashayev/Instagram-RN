@@ -1,10 +1,6 @@
 import { FlatList, Image, Pressable, Text, View } from 'react-native';
 import {
-  CommetInfoTypes,
-  LikeInfoTypes,
-  PostCommentTypes,
-  PostLikesTypes,
-  User,
+  
   type PostTypes,
 } from '../types/PostTypes';
 import AvaIcon from '@/widgets/ui/AvaIcon/AvaIcon';
@@ -18,7 +14,9 @@ import {
 } from 'lucide-react-native';
 import Video from 'react-native-video';
 import { BookmarkSolid, HeartSolid } from '@/shared/icons/Icons';
-import { findUsersById } from '@/shared/utils/filterUtils';
+import { CommetInfoTypes } from '@/features/comments/types/CommentTypes';
+import { LikeInfoTypes } from '@/features/likes/types/LikesTypes';
+
 
 interface Prop {
   avatar: string | undefined;
@@ -32,11 +30,11 @@ const Post = (props: Prop) => {
 
   const marked = true;
   const { liked, likesCount } = likeInfo;
-  const { postComment, commentsCount, filteredComentatorsById } = commentInfo;
-  const commentator = (id:number) => {
-    const currentCommentatorId = filteredComentatorsById.find(c => c.id ===id);
-    //const currentCommentator =  findUsersById()
-  }
+  const { postComments, commentsCount, filteredComentatorsById } = commentInfo;
+  // const commentator = (id: number) => {
+  //   const currentCommentatorId = filteredComentatorsById.find(c => c.id === id);
+    
+  // };
   return (
     <View>
       <View style={styles.container}>
@@ -107,7 +105,7 @@ const Post = (props: Prop) => {
             <Pressable>{marked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
           </View>
         </View>
-        {postComment.map(c => (
+        {postComments.map(c => (
           <View style={styles.comments} key={c.id}>
             <Text style={styles.username2}></Text>
             <Text>{c.text}</Text>

@@ -326,43 +326,46 @@ export const postsData = [
 export const postLikes = [
   {
     id: 9001,
-    postId: 1001,
+    targetId: 1001,
     userId: 3,
     createdAt: 1733901000000,
+    targetType:'post'
   },
   {
     id: 9002,
-    postId: 1001,
+    targetId: 1001,
     userId: 4,
     createdAt: 1733901200000,
+    targetType:'post'
   },
   {
     id: 9003,
-    postId: 1002,
+    targetId: 1002,
     userId: 1,
     createdAt: 1733901300000,
+    targetType:'post'
   },
 ];
 
 export const savedPosts = [
   {
     id: 9101,
-    postId: 1001,
+    targetId: 1001,
     userId: 3,
     savedAt: 1733905000000,
   },
   {
     id: 9102,
-    postId: 1002,
+    targetId: 1002,
     userId: 1,
     savedAt: 1733906000000,
   },
 ];
 
-export const comments = [
+export const postComments = [
   {
     id: 5001,
-    postId: 1001,
+    targetId: 1001,
     userId: 3,
     text: "Beautiful place 🔥🔥",
     likes: 2,
@@ -371,7 +374,7 @@ export const comments = [
   },
   {
     id: 5002,
-    postId: 1001,
+    targetId: 1001,
     userId: 1,
     text: "@mister9845 thanks bro! 🙏",
     likes: 1,
@@ -380,7 +383,7 @@ export const comments = [
   },
   {
     id: 5003,
-    postId: 1002,
+    targetId: 1002,
     userId: 3,
     text: "Great energy!",
     likes: 0,
@@ -389,7 +392,7 @@ export const comments = [
   },
   {
     id: 5004,
-    postId: 1005,
+    targetId: 1005,
     userId: 1,
     text: "Looks so relaxing 😌",
     likes: 5,

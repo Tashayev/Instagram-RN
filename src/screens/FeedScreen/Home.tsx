@@ -1,5 +1,5 @@
 import { ScrollView } from 'react-native';
-import Stories from '@/features/Stories/Stories';
+import Stories from '@/features/stories/ui/Stories';
 import Posts from '@/features/posts/ui/Posts';
 
 const HomePage = () => {

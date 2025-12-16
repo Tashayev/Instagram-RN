@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ScrollView, Pressable, Image, Text, View } from 'react-native';
-import { styles } from './components/Stories.styles';
+import { styles } from './Stories.styles';
 import AvaIcon from '@/widgets/ui/AvaIcon/AvaIcon';
-import {  users } from './../../../data';
+import {  users } from '../../../../data';
 import { findUsersById } from '@/shared/utils/filterUtils';
-import { useStories } from './model/useStories';
+import { useStories } from '../model/useStories';
 const Stories = () => {
   //const [localStories, setLocalStories] = useState(stories);
 

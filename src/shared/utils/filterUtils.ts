@@ -1,24 +1,22 @@
-import {
-  PostCommentTypes,
-  PostLikesTypes,
-  PostTypes,
-  User,
-} from '@/features/posts/types/PostTypes';
+import { PostCommentTypes } from '@/features/comments/types/CommentTypes';
+import { LikeTypes } from '@/features/likes/types/LikesTypes';
+import { PostTypes } from '@/features/posts/types/PostTypes';
+import { UserType } from '@/features/users/types/UserTypes';
 
 export const filterPostByUserId = (userId: number, posts: PostTypes[]) => {
   return posts.filter(post => post.userId === userId);
 };
 
-export const findUsersById = (users: User[], userId: number) => {
+export const findUsersById = (users: UserType[], userId: number) => {
   return users.find(user => user.id === userId);
 };
 
 export const getPostLikesInfo = (
-  postId: number,
+  targetId: number,
   currentUserId: number,
-  postLikes: PostLikesTypes[],
+  postLikes: LikeTypes[],
 ) => {
-  const likes = postLikes.filter(like => like.postId === postId);
+  const likes = postLikes.filter(like => like.targetId === targetId);
 
   return {
     likes,
@@ -28,17 +26,19 @@ export const getPostLikesInfo = (
 };
 
 export const getPostComment = (
-  postId: number,
+  targetId: number,
   currentUserId: number,
   comments: PostCommentTypes[],
 ) => {
-  const postComment = comments.filter(comment => comment.postId === postId);
-  const filteredComentatorsById = postComment.filter(
-      comment => comment.userId === currentUserId,
-    )
+  const postComments = comments.filter(
+    comment => comment.targetId === targetId,
+  );
+  const filteredComentatorsById = postComments.filter(
+    comment => comment.userId === currentUserId,
+  );
   return {
-    postComment,
-    commentsCount: postComment.length,
-    filteredComentatorsById
+    postComments,
+    commentsCount: postComments.length,
+    filteredComentatorsById,
   };
 };
