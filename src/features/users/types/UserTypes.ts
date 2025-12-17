@@ -13,4 +13,5 @@ export type UserType = {
 
 export type UserState = {
   users: UserType[] 
+  authUser: UserType|undefined
 }

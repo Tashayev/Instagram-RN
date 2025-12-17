@@ -3,20 +3,24 @@ import Svg, { Defs, RadialGradient, Stop, Circle } from 'react-native-svg';
 
 interface Props {
   size: number;
+  gap?: number;
+  strokeWidth?: number;
 }
 
-export const GradientCircle = ({ size }: Props) => {
-  const SIZE = size;
-  const style ={
-    svg:{ position: 'absolute', top: -3, left: -3 }
-  }as const
+export const GradientCircle = ({
+  size,
+  gap = Math.max(2, size * 0.04),
+  strokeWidth = Math.max(2, size * 0.04),
+}: Props) => {
+  const totalSize = size + gap * 2 + strokeWidth * 2;
+  const center = totalSize / 2;
+  const radius = size / 2 + gap + strokeWidth / 2;
   return (
     <Svg
-      width={SIZE + 6}
-      height={SIZE + 6}
-      viewBox={`0 0 ${SIZE + 6} ${SIZE + 6}`}
-      fill="none"
-      style={style.svg}
+      width={totalSize}
+      height={totalSize}
+      viewBox={`0 0 ${totalSize} ${totalSize}`}
+      style={{ position: 'absolute' }}
     >
       <Defs>
         <RadialGradient
@@ -27,10 +31,11 @@ export const GradientCircle = ({ size }: Props) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(78.585 105.555) rotate(-115.776) scale(126.823 188.634)"
         >
-          <Stop offset="14%" stopColor="#FF1B90" />
-          <Stop offset="34%" stopColor="#F80261" />
-          <Stop offset="58%" stopColor="#ED00C0" />
-          <Stop offset="90%" stopColor="#7017FF" />
+          <Stop offset="24%" stopColor="#FF1B90" />
+          <Stop offset="44%" stopColor="#F80261" />
+          <Stop offset="69%" stopColor="#ED00C0" />
+          <Stop offset="78%" stopColor="#C500E9" />
+          <Stop offset="89%" stopColor="#7017FF" />
         </RadialGradient>
         <RadialGradient
           id="grad1"
@@ -40,25 +45,27 @@ export const GradientCircle = ({ size }: Props) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(33.7125 89.7915) rotate(-57.4396) scale(54.951 57.1569)"
         >
-          <Stop offset="14%" stopColor="#FFd600" />
-          <Stop offset="68%" stopColor="#Ff6930" />
-          <Stop offset="73%" stopColor="#c500e9" />
-          <Stop offset="100%" stopColor="#fe3b36" />
+          <Stop offset="0" stopColor="#FFd600" />
+          <Stop offset="48%" stopColor="#Ff6930" />
+          <Stop offset="73%" stopColor="#FE3B36" />
+          <Stop offset="100%" stopColor="#fe3b36" stopOpacity="0%" />
         </RadialGradient>
       </Defs>
       <Circle
-        cx={(SIZE + 6) / 2}
-        cy={(SIZE + 6) / 2}
-        r={SIZE / 2 + 2}
+        cx={center}
+        cy={center}
+        r={radius}
         stroke="url(#grad)"
-        strokeWidth="3"
+        strokeWidth={strokeWidth}
+        fill="none"
       />
       <Circle
-        cx={(SIZE + 6) / 2}
-        cy={(SIZE + 6) / 2}
-        r={SIZE / 2 + 2}
+        cx={center}
+        cy={center}
+        r={radius}
         stroke="url(#grad1)"
-        strokeWidth="3"
+        strokeWidth={strokeWidth}
+        fill="none"
       />
     </Svg>
   );

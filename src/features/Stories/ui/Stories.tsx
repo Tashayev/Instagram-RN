@@ -2,45 +2,57 @@ import React, { useState } from 'react';
 import { ScrollView, Pressable, Image, Text, View } from 'react-native';
 import { styles } from './Stories.styles';
 import AvaIcon from '@/widgets/ui/AvaIcon/AvaIcon';
-import {  users } from '../../../../data';
+
 import { findUsersById } from '@/shared/utils/filterUtils';
 import { useStories } from '../model/useStories';
+import useUsers from '@/features/users/model/useUsers';
+import { AvaPlus } from '@/shared/icons/Icons';
 const Stories = () => {
-  //const [localStories, setLocalStories] = useState(stories);
+  const { users, currentUser, isCurrentUserHasStories } = useUsers();
 
-  // const handlePress = (id: number) => {
-  //   setLocalStories(prev =>
-  //     prev.map(u =>
-  //       u.id === id
-  //         ? {
-  //             ...u,
-  //             stories: {
-  //               ...u.stories,
-  //               viewed: true,
-  //             },
-  //           }
-  //         : u,
-  //     ),
-  //   );
-  //   //markStoryAsViewed(id);
-  // };
-  const {stories} =useStories();
+  const { stories, isStoryViewedByCurrentUser, handleAddToViewedList } =
+    useStories();
+
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={styles.container}
+      contentContainerStyle={styles.container}
     >
+      <Pressable style={styles.item}>
+        <View style={styles.imgWrapper}>
+          {isCurrentUserHasStories ? (
+            <AvaIcon
+              size={93}
+              viewed={true}
+              avatar={currentUser.avatar}
+            />
+          ) : (
+            <Image source={{ uri: currentUser.avatar }} style={styles.image} />
+          )}
+          <View style={styles.plusIconWrapper}>
+            <AvaPlus />
+          </View>
+        </View>
+        <Text style={styles.name}>Your Story</Text>
+      </Pressable>
       {stories.map(story => {
-        const user = findUsersById(users, story.userId)
+        const user = findUsersById(users, story.userId);
+        const viewer = {
+          id: Date.now(),
+          storyId: story.id,
+          userId: currentUser.id,
+          viewedAt: new Date().toISOString(),
+        };
+        console.log(isCurrentUserHasStories)
         return (
-          <Pressable key={story.id} style={styles.item}>
+          <Pressable key={story.id} style={styles.item} onPress={() => handleAddToViewedList(viewer)}>
             <View style={styles.imgWrapper}>
               <AvaIcon
-                size={81}
+                size={93}
                 avatar={user?.avatar}
-                viewed={false}
-                // onPress={() => handlePress(user.id)}
+                viewed={isStoryViewedByCurrentUser(story.id)}
+                
               />
             </View>
             <Text style={styles.name}>{user?.username}</Text>

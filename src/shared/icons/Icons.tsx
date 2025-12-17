@@ -43,12 +43,12 @@ export const SendSolid = () => (
   >
     <Path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 1-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.85 3.18a2 2 0 0 1 1.112 1.11z" />
     <Path
-        d="M5 18 L14 10" 
-        stroke="white"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      d="M5 18 L14 10"
+      stroke="white"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </Svg>
 );
 export const HomeSolid = () => {
@@ -75,6 +75,7 @@ export const ReelsSolid = () => {
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
+      
     >
       <Rect x="3" y="3" width="18" height="18" rx="2" fill="black" />
       <Path
@@ -114,3 +115,30 @@ export const BookmarkSolid = () => (
     <Path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
   </Svg>
 );
+
+export const AvaPlus = () => {
+  return (
+    <Svg
+      width={30}
+      height={30}
+      viewBox="0 0 24 24"
+      fill="none"
+      style={{position: 'absolute', right:-3, bottom:-3}}
+    >
+      <Path
+        d="M22.5 12c0 5.799-4.701 10.5-10.5 10.5S1.5 17.799 1.5 12 6.201 1.5 12 1.5 22.5 6.201 22.5 12z"
+        fill="#0195F5"
+      />
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 20.75a8.75 8.75 0 100-17.5 8.75 8.75 0 000 17.5zm0 1.75c5.799 0 10.5-4.701 10.5-10.5S17.799 1.5 12 1.5 1.5 6.201 1.5 12 6.201 22.5 12 22.5z"
+        fill="#FEFEFE"
+      />
+      <Path
+        d="M11.125 15.5a.875.875 0 001.75 0v-2.625H15.5a.875.875 0 000-1.75h-2.625V8.5a.875.875 0 00-1.75 0v2.625H8.5a.875.875 0 000 1.75h2.625V15.5z"
+        fill="#fff"
+      />
+    </Svg>
+  );
+};

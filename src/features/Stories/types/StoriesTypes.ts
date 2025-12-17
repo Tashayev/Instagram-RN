@@ -1,10 +1,7 @@
-type StoryViewedUsers = {
-  userId: number;
-  viewedAt: number;
-};
+
 export type StoryTypes = {
   id: number;
-  viewedBy: StoryViewedUsers[];
+  viewedBy: StoryViewedTypes[];
   userId: number;
   createdAt: number;
   expiresAt: number;
@@ -13,3 +10,10 @@ export type StoryTypes = {
 export interface StoriesState {
   stories: StoryTypes[];
 }
+
+export type StoryViewedTypes = {
+    id: number,
+    storyId: number,
+    userId: number,
+    viewedAt: string,
+  }
