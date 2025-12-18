@@ -6,6 +6,7 @@ import { storyAction } from './storySlice';
 import useUsers from '@/features/users/model/useUsers';
 import { selectStoriesExceptCurrentUser } from './storySelctor';
 import { StoryViewedTypes } from '../types/StoriesTypes';
+import { markStoryViewedThunk } from './thunks/markStoryViewedThunk';
 
 export const useStories = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,11 @@ export const useStories = () => {
         ?.viewedBy?.some(view => view.userId === currentUser.id) ?? false
     );
   };
-  const handleAddToViewedList = (payload: StoryViewedTypes) => {
-    dispatch(storyAction.addCurrentUserToViwedList(payload));
+  const handleAddToViewedList = (storyId:number) => {
+    dispatch(markStoryViewedThunk(storyId));
   };
+  
+
 
   return {
     stories: getAllStoreis,

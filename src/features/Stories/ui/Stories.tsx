@@ -38,15 +38,10 @@ const Stories = () => {
       </Pressable>
       {stories.map(story => {
         const user = findUsersById(users, story.userId);
-        const viewer = {
-          id: Date.now(),
-          storyId: story.id,
-          userId: currentUser.id,
-          viewedAt: new Date().toISOString(),
-        };
-        console.log(isCurrentUserHasStories)
+        
+        
         return (
-          <Pressable key={story.id} style={styles.item} onPress={() => handleAddToViewedList(viewer)}>
+          <Pressable key={story.id} style={styles.item} onPress={() => handleAddToViewedList(story.id)}>
             <View style={styles.imgWrapper}>
               <AvaIcon
                 size={93}

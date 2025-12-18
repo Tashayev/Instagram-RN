@@ -4,6 +4,7 @@ import {
   StoryTypes,
   StoryViewedTypes,
 } from '../types/StoriesTypes';
+import { useSelector } from '@/app/store/hooks/useSelector';
 
 export const setAllStories = (
   state: StoriesState,
@@ -24,11 +25,13 @@ export const addCurrentUserToViwedList = (
   state: StoriesState,
   action: PayloadAction<StoryViewedTypes>,
 ) => {
-  const story = state.stories.find(s => s.id === action.payload.id);
+  const story = state.stories.find(s => s.id === action.payload.storyId);
   if (!story) return;
+
   const alreadyViewed = story.viewedBy.some(
-    view => view.userId === action.payload.userId,
+    v => v.userId === action.payload.userId
   );
+
   if (!alreadyViewed) {
     story.viewedBy.push(action.payload);
   }
