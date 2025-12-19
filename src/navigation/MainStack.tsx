@@ -5,11 +5,13 @@ import HomeHeader from './headers/HomeHeader/HomeHeader';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import StoriesViewer from '@/features/stories/ui/StoriesContent/StoriesViewer';
 
+
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
   return (
     <Stack.Navigator>
+      
       <Stack.Screen
         name="Tabs"
         component={AppTabs}
