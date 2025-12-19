@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StoriesNavProp } from '../../types/StoriesTypes';
 
 const Stories = () => {
+  
   const { users, currentUser, isCurrentUserHasStories } = useUsers();
 
   const { stories, isStoryViewedByCurrentUser, handleAddToViewedList } =

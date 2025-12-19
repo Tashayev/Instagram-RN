@@ -1,5 +1,5 @@
-import { useDispatch } from '@/app/store/hooks/useDispach';
-import { useSelector } from '@/app/store/hooks/useSelector';
+import { useDispatch } from '@/shared/utils/hooks/useDispach';
+import { useSelector } from '@/shared/utils/hooks/useSelector';
 import { useEffect } from 'react';
 import { stories as storiesData, storyContents } from '../../../../data';
 import { storyAction } from './storySlice';

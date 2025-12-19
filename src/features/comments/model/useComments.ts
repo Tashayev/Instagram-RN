@@ -1,5 +1,5 @@
-import { useDispatch } from '@/app/store/hooks/useDispach';
-import { useSelector } from '@/app/store/hooks/useSelector';
+import { useDispatch } from '@/shared/utils/hooks/useDispach';
+import { useSelector } from '@/shared/utils/hooks/useSelector';
 import { useEffect } from 'react';
 import { commentAction } from './commetSlice';
 import { postComments } from '../../../../data';
@@ -7,16 +7,17 @@ import { postComments } from '../../../../data';
 const useComments = () => {
   const dispatch = useDispatch();
 
-  const getAllPostComments = useSelector(state => state.comment.postComments);
   
+ const comments = useSelector(state => state.comment.postComments)
+
   useEffect(() => {
-    if (getAllPostComments.length === 0) {
+    if (comments.length === 0) {
       dispatch(commentAction.setPostComments(postComments));
     }
   }, []);
 
   return {
-    postComments: getAllPostComments,
+    postComments: comments,
   };
 };
 

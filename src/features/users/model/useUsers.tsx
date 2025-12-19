@@ -1,10 +1,10 @@
-import { useDispatch } from '@/app/store/hooks/useDispach';
+import { useDispatch } from '@/shared/utils/hooks/useDispach';
 
 import { useEffect } from 'react';
 import { users } from '../../../../data';
 import { userAction } from './userSlice';
 import { selectUsersExceptCurrent } from './userSelector';
-import { useSelector } from '@/app/store/hooks/useSelector';
+import { useSelector } from '@/shared/utils/hooks/useSelector';
 
 
 const useUsers = () => {

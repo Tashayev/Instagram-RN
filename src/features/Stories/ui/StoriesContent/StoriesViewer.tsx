@@ -2,6 +2,8 @@ import { View, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import Video from 'react-native-video';
 import useStories from '../../model/useStories';
+import { useNavigation } from '@react-navigation/native';
+import { styles } from './StoriesContent.styles';
 
 const StoriesViewer = ({ route }: any) => {
   const { userId } = route.params;
@@ -11,21 +13,21 @@ const StoriesViewer = ({ route }: any) => {
   if (!story) return null;
 
   const contents = getStoryContents(story.id);
-
+  const navigation = useNavigation();
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.container}>
       {contents.map(item => (
         <View key={item.id} style={styles.container}>
           {item.type === 'image' ? (
             <Image
               source={{ uri: item.url }}
-              style={styles.media}
+              style={styles.image}
               resizeMode="cover"
             />
           ) : (
             <Video
               source={{ uri: item.url }}
-              // style={styles.media}
+              // style={styles.video}
               resizeMode="cover"
               repeat
               paused={false} 
@@ -37,20 +39,6 @@ const StoriesViewer = ({ route }: any) => {
   );
 };
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: 'black',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  media: {
-    width: '100%',
-    height: '100%',
-  },
-});
+
 
 export default StoriesViewer;

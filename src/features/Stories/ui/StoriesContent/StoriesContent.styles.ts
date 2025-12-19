@@ -4,22 +4,21 @@ const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    
     width: width,         
     height: width,         
     position: 'relative',  
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000', 
-    overflow: 'hidden',     
+    overflow: 'hidden',   
+    flex: 2  
   },
   image: {
-    position: 'absolute',  
-    top: 0,
-    left: 0,
+    paddingVertical: 30,
     width: '100%',
     height: '100%',
-    resizeMode: 'cover', 
+     
   },
   video: {
     position: 'absolute',

@@ -107,12 +107,14 @@ const Post = (props: Prop) => {
             <Pressable>{marked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
           </View>
         </View>
-        {postComments.map(c => (
+        {postComments.map(c =>{ 
+          
+          return(
           <View style={styles.comments} key={c.id}>
-            <Text style={styles.username2}></Text>
+            <Text style={styles.username2}>{c.username}</Text>
             <Text>{c.text}</Text>
           </View>
-        ))}
+        )})}
       </View>
     </View>
   );

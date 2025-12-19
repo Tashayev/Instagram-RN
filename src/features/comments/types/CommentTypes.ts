@@ -7,6 +7,7 @@ export type PostCommentTypes = {
   likes: number;
   createdAt: string;
   replyTo: null | number;
+  username: string
 };
 
 export type CommetInfoTypes = {

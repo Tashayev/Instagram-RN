@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as reducers from './reducers'
+import { PostCommentTypes } from "../types/CommentTypes";
 
 const initialState = {
-  postComments: []
+  postComments: [] as PostCommentTypes[]
 }
 export const commentSlice = createSlice({
   name:'comment',

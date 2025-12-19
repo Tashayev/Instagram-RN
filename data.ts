@@ -371,6 +371,7 @@ export const postComments = [
     likes: 2,
     createdAt: "2025-01-10T13:00:00Z",
     replyTo: null,
+    username: "mister9845",
   },
   {
     id: 5002,
@@ -380,6 +381,7 @@ export const postComments = [
     likes: 1,
     createdAt: "2025-01-10T13:05:00Z",
     replyTo: 5001,
+    username: "mister",
   },
   {
     id: 5003,
@@ -389,6 +391,7 @@ export const postComments = [
     likes: 0,
     createdAt: "2025-01-11T13:00:00Z",
     replyTo: null,
+    username: "mister9845",
   },
   {
     id: 5004,
@@ -398,6 +401,7 @@ export const postComments = [
     likes: 5,
     createdAt: "2025-01-11T13:00:00Z",
     replyTo: null,
+    username: "mister",
   },
 ];
 
