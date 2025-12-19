@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppTabs from './AppTabs';
 import HomeHeader from './headers/HomeHeader/HomeHeader';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import StoriesViewer from '@/features/stories/ui/StoriesContent/StoriesViewer';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,11 @@ const MainStack = () => {
             return null;
           },
         })}
+      />
+      <Stack.Screen
+        name="StoryContent"
+        component={StoriesViewer} 
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

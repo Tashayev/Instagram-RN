@@ -139,15 +139,15 @@ export const storyContents = [
     createdAt: 1733800000000,
     order: 1,
   },
-  {
-    id: 4002,
-    storyId: 2001,
-    type: "video",
-    url: "https://videos.pexels.com/video-files/855166/855166-hd_1280_720_25fps.mp4",
-    duration: 14000,
-    createdAt: 1733800100000,
-    order: 2,
-  },
+  // {
+  //   id: 4002,
+  //   storyId: 2001,
+  //   type: "video",
+  //   url: "https://videos.pexels.com/video-files/855166/855166-hd_1280_720_25fps.mp4",
+  //   duration: 14000,
+  //   createdAt: 1733800100000,
+  //   order: 2,
+  // },
 
   // Stories for user 2
   {
@@ -159,15 +159,15 @@ export const storyContents = [
     createdAt: 1733810000000,
     order: 1,
   },
-  {
-    id: 4004,
-    storyId: 2002,
-    type: "video",
-    url: "https://videos.pexels.com/video-files/3182833/3182833-uhd_2560_1440_30fps.mp4",
-    duration: 12000,
-    createdAt: 1733810100000,
-    order: 2,
-  },
+  // {
+  //   id: 4004,
+  //   storyId: 2002,
+  //   type: "video",
+  //   url: "https://videos.pexels.com/video-files/3182833/3182833-uhd_2560_1440_30fps.mp4",
+  //   duration: 12000,
+  //   createdAt: 1733810100000,
+  //   order: 2,
+  // },
 
   // Stories for user 4
   {
@@ -181,15 +181,15 @@ export const storyContents = [
   },
 
   // Stories for user 3
-  {
-    id: 4006,
-    storyId: 2004,
-    type: "video",
-    url: "https://videos.pexels.com/video-files/2795744/2795744-hd_1280_720_25fps.mp4",
-    duration: 10000,
-    createdAt: 1733828000000,
-    order: 1,
-  },
+  // {
+  //   id: 4006,
+  //   storyId: 2004,
+  //   type: "video",
+  //   url: "https://videos.pexels.com/video-files/2795744/2795744-hd_1280_720_25fps.mp4",
+  //   duration: 10000,
+  //   createdAt: 1733828000000,
+  //   order: 1,
+  // },
 
   // Stories for user 5
   {

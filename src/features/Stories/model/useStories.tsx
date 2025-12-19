@@ -1,42 +1,58 @@
 import { useDispatch } from '@/app/store/hooks/useDispach';
 import { useSelector } from '@/app/store/hooks/useSelector';
 import { useEffect } from 'react';
-import { stories } from '../../../../data';
+import { stories as storiesData, storyContents } from '../../../../data';
 import { storyAction } from './storySlice';
 import useUsers from '@/features/users/model/useUsers';
-import { selectStoriesExceptCurrentUser } from './storySelctor';
-import { StoryViewedTypes } from '../types/StoriesTypes';
+import {  selectStoriesWithContent } from './storySelector';
 import { markStoryViewedThunk } from './thunks/markStoryViewedThunk';
+import { RootState } from '@/app/store/store';
 
-export const useStories = () => {
+const useStories = () => {
   const dispatch = useDispatch();
   const { currentUser } = useUsers();
-  const getAllStoreis = useSelector(
-    selectStoriesExceptCurrentUser
-  );
+
+  const storiesRaw = useSelector((state: RootState) => state.story.stories);
+  const storiesWithContent = useSelector(selectStoriesWithContent);
+
+const contentsRaw = useSelector((state: RootState) => state.story.storiesContents);
+
+
+const stories = currentUser
+  ? storiesWithContent.filter(s => s.userId !== currentUser.id)
+  : storiesWithContent;
+
+  const contents = useSelector(state => state.story.storiesContents);
 
   useEffect(() => {
-    if (getAllStoreis.length === 0) {
-      dispatch(storyAction.setAllStories(stories));
+    if (storiesRaw.length === 0) {
+      dispatch(storyAction.setAllStories(storiesData));
+      dispatch(storyAction.setStoriesContents(storyContents))
     }
-  }, [getAllStoreis.length, dispatch]);
+  }, [storiesRaw.length, dispatch,contentsRaw.length]);
 
-  const isStoryViewedByCurrentUser = (storyId: number) => {
-    return (
-      getAllStoreis
-        .find(story => story.id === storyId)
-        ?.viewedBy?.some(view => view.userId === currentUser.id) ?? false
-    );
-  };
-  const handleAddToViewedList = (storyId:number) => {
+  const getStoryByUserId = (userId: number) =>
+    stories.find(story => story.userId === userId);
+
+  const getStoryContents = (storyId: number) =>
+    contents.filter(c => c.storyId === storyId);
+
+  const isStoryViewedByCurrentUser = (storyId: number) =>
+    stories
+      .find(story => story.id === storyId)
+      ?.viewedBy?.some(v => v.userId === currentUser.id) ?? false;
+
+  const handleAddToViewedList = (storyId: number) => {
     dispatch(markStoryViewedThunk(storyId));
   };
-  
-
-
+ 
   return {
-    stories: getAllStoreis,
+    stories,
+    getStoryByUserId,
+    getStoryContents,
     isStoryViewedByCurrentUser,
     handleAddToViewedList,
   };
 };
+
+export default useStories;

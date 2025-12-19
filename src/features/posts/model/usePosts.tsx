@@ -3,16 +3,20 @@ import {useSelector} from '@/app/store/hooks/useSelector'
 import { useEffect } from 'react';
 import { postAction } from './postSlice';
 import { postsData } from '../../../../data';
-import { selectPostsExceptCurrentUser } from './postSelector';
+import { selectAllPosts } from './postSelector';
 import useUsers from '@/features/users/model/useUsers';
 
 
 
-export const usePosts = () => {
+const usePosts = () => {
   const dispatch = useDispatch();
   const {currentUser} = useUsers()
-  const posts = useSelector(selectPostsExceptCurrentUser(currentUser.id));
-  
+  const postsAll = useSelector(selectAllPosts);
+
+const posts = currentUser
+  ? postsAll.filter(p => p.userId !== currentUser.id)
+  : postsAll;
+
   useEffect(()=>{
     if(posts.length === 0){
       dispatch(postAction.setAllPosts(postsData))
@@ -22,3 +26,4 @@ export const usePosts = () => {
      posts
   };
 };
+export default usePosts

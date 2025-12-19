@@ -24,9 +24,10 @@ interface Prop {
   post: PostTypes;
   likeInfo: LikeInfoTypes;
   commentInfo: CommetInfoTypes;
+  handleAddToViewedList: (storyId: number) => void
 }
 const Post = (props: Prop) => {
-  const { avatar, username, post, likeInfo, commentInfo } = props;
+  const { avatar, username, post, likeInfo, commentInfo, handleAddToViewedList } = props;
 
   const marked = true;
   const { liked, likesCount } = likeInfo;
@@ -41,7 +42,8 @@ const Post = (props: Prop) => {
         <View style={styles.border} />
         <View style={styles.spaceBetween}>
           <View style={styles.left}>
-            <AvaIcon avatar={avatar} size={33} viewed={false} />
+            <Pressable  >
+            <AvaIcon avatar={avatar} size={33} viewed={false} /></Pressable>
             <View>
               <Text style={styles.username}>{username}</Text>
               <Text style={styles.location}>{post.location}</Text>

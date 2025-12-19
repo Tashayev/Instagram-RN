@@ -1,10 +1,11 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import {
   StoriesState,
+  StoryContents,
   StoryTypes,
   StoryViewedTypes,
 } from '../types/StoriesTypes';
-import { useSelector } from '@/app/store/hooks/useSelector';
+
 
 export const setAllStories = (
   state: StoriesState,
@@ -29,13 +30,22 @@ export const addCurrentUserToViwedList = (
   if (!story) return;
 
   const alreadyViewed = story.viewedBy.some(
-    v => v.userId === action.payload.userId
+    v => v.userId === action.payload.userId,
   );
 
   if (!alreadyViewed) {
     story.viewedBy.push(action.payload);
   }
 };
+
+
+export const setStoriesContents = (
+  state: StoriesState,
+  action: PayloadAction<StoryContents[]>,
+) => {
+  state.storiesContents = action.payload;
+};
+
 // export const markStoryViewed = (state: StoriesState, action: PayloadAction<number>) => {
 //   const story = state.stories.find(story => story.id === action.payload);
 //   if (story) story.viewed = true;

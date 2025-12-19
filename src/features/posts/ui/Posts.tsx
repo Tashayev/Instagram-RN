@@ -7,28 +7,30 @@ import {
   getPostComment,
   getPostLikesInfo,
 } from '@/shared/utils/filterUtils';
-import { usePosts } from '../model/usePosts';
+import usePosts from '../model/usePosts';
 import useUsers from '@/features/users/model/useUsers';
 import useComments from '@/features/comments/model/useComments';
 import useLikes from '@/features/likes/model/useLikes';
+import useStories from '@/features/stories/model/useStories';
 
 const Posts = () => {
-  const { users } = useUsers();
-  const currentUserId = 1;
+  const { users, currentUser } = useUsers();
   const { posts } = usePosts();
   const { postComments } = useComments();
   const { postLikes } = useLikes();
+  const { handleAddToViewedList } = useStories();
+  const currentUserId = currentUser.id;
+
   return (
     <ScrollView>
       {posts.map(post => {
         const user = findUsersById(users, post.userId);
         const commentInfo = getPostComment(
           post.id,
-          currentUserId, 
-          postComments, 
+          currentUserId,
+          postComments,
         );
         const likeInfo = getPostLikesInfo(post.id, currentUserId, postLikes);
-         
         return (
           <Post
             avatar={user?.avatar}
@@ -37,6 +39,7 @@ const Posts = () => {
             key={post.id}
             likeInfo={likeInfo}
             commentInfo={commentInfo}
+            handleAddToViewedList={handleAddToViewedList}
           />
         );
       })}

@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import * as reducers from "./reducers";
 import { StoriesState } from "../types/StoriesTypes";
 
 
 const initialState: StoriesState = {
   stories: [],
+  storiesContents: []
 };
 
 export const storySlice = createSlice({
