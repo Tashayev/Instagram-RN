@@ -1,10 +1,18 @@
-import { View, Image, StatusBar, TextInput, Pressable } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import {
+  View,
+  Image,
+  StatusBar,
+  TextInput,
+  Pressable,
+  Animated,
+} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
 import Video from 'react-native-video';
 import useStories from '../../model/useStories';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './StoriesContent.styles';
 import { Heart, Send } from 'lucide-react-native';
+import { StoriesProgressBar } from '@/shared/animations/ProgressBar';
 
 const StoriesViewer = ({ route }: any) => {
   const { userId } = route.params;
@@ -38,7 +46,15 @@ const StoriesViewer = ({ route }: any) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
+
       <View style={styles.wrapper}>
+        <StoriesProgressBar
+          count={contents.length}
+          currentIndex={currentIndex}
+          duration={currentItem.duration}
+          isPaused={false}
+        />
+
         {currentItem.type === 'image' ? (
           <Image
             source={{ uri: currentItem.url }}
@@ -48,7 +64,7 @@ const StoriesViewer = ({ route }: any) => {
         ) : (
           <Video
             source={{ uri: currentItem.url }}
-            style={styles.video} 
+            style={styles.video}
             resizeMode="cover"
             repeat
             paused={false}
