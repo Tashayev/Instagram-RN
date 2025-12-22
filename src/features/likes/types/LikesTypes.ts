@@ -3,6 +3,7 @@ export type LikeTypes = {
   targetId: number;
   userId: number | undefined;
   createdAt: number;
+  targetType:'post'
 };
 
 

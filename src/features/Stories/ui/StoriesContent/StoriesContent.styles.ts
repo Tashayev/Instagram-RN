@@ -12,13 +12,13 @@ export const styles = StyleSheet.create({
     backgroundColor: '#000', 
     overflow: 'hidden',   
     flex: 1 ,
-    paddingBottom:130,
+    paddingBottom:160,
     paddingTop:70
   },
   wrapper:{
     gap:10,
     width:'100%',
-    
+    position:'relative'
   },
   image: {
     borderRadius: 10,

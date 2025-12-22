@@ -345,6 +345,13 @@ export const postLikes = [
     createdAt: 1733901300000,
     targetType:'post'
   },
+  {
+    id: 9004,
+    targetId: 1001,
+    userId: 1,
+    createdAt: 1733901200000,
+    targetType:'post'
+  },
 ];
 
 export const savedPosts = [

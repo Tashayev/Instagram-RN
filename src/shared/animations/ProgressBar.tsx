@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingHorizontal: 8,
-    paddingTop: 8,
+    paddingTop: 8, 
+    
   },
   segment: {
     flex: 1,
@@ -71,6 +72,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.3)',
     marginHorizontal: 2,
     overflow: 'hidden',
+    position: 'relative',
+    bottom:-30,
+    zIndex:1000
   },
   fillFull: {
     width: '100%',

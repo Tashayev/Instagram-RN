@@ -4,7 +4,6 @@ import {
   StatusBar,
   TextInput,
   Pressable,
-  Animated,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import Video from 'react-native-video';
