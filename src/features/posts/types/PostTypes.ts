@@ -9,6 +9,7 @@ export type PostTypes = {
   likes: number;
   createdAt: string;
   taggedUsers: number[];
+  isMarked?: boolean
 };
 export type PostState = {
   posts: PostTypes[]

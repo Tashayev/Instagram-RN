@@ -360,6 +360,12 @@ export const savedPosts = [
     userId: 1,
     savedAt: 1733906000000,
   },
+  {
+    id: 9103,
+    targetId: 1001,
+    userId: 1,
+    savedAt: 1733906000000,
+  },
 ];
 
 export const postComments = [

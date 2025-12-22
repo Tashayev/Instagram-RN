@@ -24,12 +24,12 @@ interface Prop {
   post: PostTypes;
   likeInfo: LikeInfoTypes;
   commentInfo: CommetInfoTypes;
-  handleAddToViewedList: (storyId: number) => void
+  handleAddToViewedList: (storyId: number) => void,
 }
 const Post = (props: Prop) => {
   const { avatar, username, post, likeInfo, commentInfo, handleAddToViewedList } = props;
 
-  const marked = true;
+  
   const { liked, likesCount } = likeInfo;
   const { postComments, commentsCount, filteredComentatorsById } = commentInfo;
   // const commentator = (id: number) => {
@@ -104,7 +104,7 @@ const Post = (props: Prop) => {
             </Pressable>
           </View>
           <View>
-            <Pressable>{marked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
+            <Pressable>{post.isMarked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
           </View>
         </View>
         {postComments.map(c =>{ 

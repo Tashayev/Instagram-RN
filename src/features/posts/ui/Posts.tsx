@@ -13,14 +13,15 @@ import useComments from '@/features/comments/model/useComments';
 import useLikes from '@/features/likes/model/useLikes';
 import useStories from '@/features/stories/model/useStories';
 
+
 const Posts = () => {
   const { users, currentUser } = useUsers();
   const { posts } = usePosts();
   const { postComments } = useComments();
   const { postLikes } = useLikes();
-  const { handleAddToViewedList } = useStories();
+  const { handleAddToViewedList } = useStories();  
   const currentUserId = currentUser.id;
-
+  
   return (
     <ScrollView>
       {posts.map(post => {
@@ -31,6 +32,7 @@ const Posts = () => {
           postComments,
         );
         const likeInfo = getPostLikesInfo(post.id, currentUserId, postLikes);
+        
         return (
           <Post
             avatar={user?.avatar}
