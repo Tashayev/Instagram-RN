@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as reducers from './reducers'
+import { LikeTypes } from "../types/LikesTypes";
 
 const initialState = {
-  postLikes: []
+  postLikes: [] as LikeTypes[]
 }
 
 export const likeSlice = createSlice({

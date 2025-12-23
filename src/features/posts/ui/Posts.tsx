@@ -11,34 +11,25 @@ import { findUsersById, getPostComment } from '@/shared/utils/filterUtils';
 const Posts = () => {
   const { users, currentUser } = useUsers();
   const { posts } = usePosts();
-  const { postComments } = useComments();
-  const { getLikesInfo, handleLike } = useLikes();
+  const { handleLike } = useLikes();
   const { handleAddToViewedList } = useStories();
-
-  const currentUserId = currentUser.id;
 
   return (
     <ScrollView>
       {posts.map(post => {
         const user = findUsersById(users, post.userId);
 
-        // Комментарии через хук
-        const commentInfo = getPostComment(post.id, currentUserId, postComments);
-
-        // Лайки через хук
-        const { liked, likesCount } = getLikesInfo(post.id);
-
         return (
           <Post
             key={post.id}
             avatar={user?.avatar}
             username={user?.username}
+            userId={user?.id}
             post={post}
-            commentInfo={commentInfo}
-            liked={liked}          // boolean для UI
-            likesCount={likesCount} // число лайков
             onLike={() => handleLike(post.id)}
+            isMarked={post.isMarked}
             handleAddToViewedList={handleAddToViewedList}
+            currentUserId={currentUser.id}
           />
         );
       })}

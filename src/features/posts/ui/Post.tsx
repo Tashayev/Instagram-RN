@@ -1,8 +1,5 @@
 import { FlatList, Image, Pressable, Text, View } from 'react-native';
-import {
-  
-  type PostTypes,
-} from '../types/PostTypes';
+import { type PostTypes } from '../types/PostTypes';
 import AvaIcon from '@/widgets/ui/AvaIcon/AvaIcon';
 import { styles } from './Post.styles';
 import {
@@ -14,36 +11,49 @@ import {
 } from 'lucide-react-native';
 import Video from 'react-native-video';
 import { BookmarkSolid, HeartSolid } from '@/shared/icons/Icons';
-import { CommetInfoTypes } from '@/features/comments/types/CommentTypes';
-import { LikeInfoTypes } from '@/features/likes/types/LikesTypes';
-
+import { useSelector } from '@/shared/utils/hooks/useSelector';
+import { selectPostComment } from '@/features/comments/model/commentSelector';
+import { selectLikesInfo } from '@/features/likes/model/likeSelector';
+import { selectStoryByUserId } from '@/features/stories/model/storySelector';
 
 interface Prop {
   avatar: string | undefined;
   username: string | undefined;
   post: PostTypes;
-  likeInfo: LikeInfoTypes;
-  commentInfo: CommetInfoTypes;
-  handleAddToViewedList: (storyId: number) => void,
+  userId: number | undefined;
+  currentUserId: number;
+  handleAddToViewedList: (storyId: number) => void;
+  onLike: (postId: number) => void;
+  isMarked: boolean;
 }
 const Post = (props: Prop) => {
-  const { avatar, username, post, likeInfo, commentInfo, handleAddToViewedList } = props;
-
-  
+  const {
+    avatar,
+    username,
+    post,
+    handleAddToViewedList,
+    isMarked,
+    onLike,
+    currentUserId,
+    userId,
+  } = props;
+  const likeInfo = useSelector(selectLikesInfo(post.id));
+  const commentInfo = useSelector(selectPostComment(post.id, currentUserId));
+  if (!userId) return null;
+  const story = useSelector(selectStoryByUserId(userId));
+  if(!story)return null
   const { liked, likesCount } = likeInfo;
   const { postComments, commentsCount, filteredComentatorsById } = commentInfo;
-  // const commentator = (id: number) => {
-  //   const currentCommentatorId = filteredComentatorsById.find(c => c.id === id);
-    
-  // };
+
   return (
     <View>
       <View style={styles.container}>
         <View style={styles.border} />
         <View style={styles.spaceBetween}>
           <View style={styles.left}>
-            <Pressable  >
-            <AvaIcon avatar={avatar} size={33} viewed={false} /></Pressable>
+            <Pressable onPress={() => handleAddToViewedList(story.id)}>
+              <AvaIcon avatar={avatar} size={33} viewed={false} />
+            </Pressable>
             <View>
               <Text style={styles.username}>{username}</Text>
               <Text style={styles.location}>{post.location}</Text>
@@ -91,7 +101,7 @@ const Post = (props: Prop) => {
         </View>
         <View style={styles.spaceBetween}>
           <View style={styles.left}>
-            <Pressable style={styles.btn}>
+            <Pressable style={styles.btn} onPress={() => onLike(post.id)}>
               {liked ? <HeartSolid /> : <Heart />}
               <Text>{likesCount}</Text>
             </Pressable>
@@ -104,17 +114,17 @@ const Post = (props: Prop) => {
             </Pressable>
           </View>
           <View>
-            <Pressable>{post.isMarked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
+            <Pressable>{isMarked ? <BookmarkSolid /> : <Bookmark />}</Pressable>
           </View>
         </View>
-        {postComments.map(c =>{ 
-          
-          return(
-          <View style={styles.comments} key={c.id}>
-            <Text style={styles.username2}>{c.username}</Text>
-            <Text>{c.text}</Text>
-          </View>
-        )})}
+        {commentInfo.postComments.map(c => {
+          return (
+            <View style={styles.comments} key={c.id}>
+              <Text style={styles.username2}>{c.username}</Text>
+              <Text>{c.text}</Text>
+            </View>
+          );
+        })}
       </View>
     </View>
   );

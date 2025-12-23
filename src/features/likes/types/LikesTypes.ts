@@ -3,13 +3,13 @@ export type LikeTypes = {
   targetId: number;
   userId: number | undefined;
   createdAt: number;
-  targetType:'post'
+  targetType:string
 };
 
 
 
 export type LikeInfoTypes = {
-  likes: LikeTypes[];
+  
   liked: boolean;
   likesCount: number;
 };
